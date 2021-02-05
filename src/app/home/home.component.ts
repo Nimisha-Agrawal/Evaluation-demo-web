@@ -1,11 +1,14 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ViewChild } from '@angular/core';
 import { first } from 'rxjs/operators';
-
+//import { Paginator, Table} from 'primeng';
 import { User } from '@/_models';
 import { UserService, AuthenticationService } from '@/_services';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit {
+
+    //@ViewChild('datatable' , {static:true}) dataTable : Table;
+    //@ViewChild('paginator' , {static:true}) paginator: Paginator;
     currentUser: User;
     users = [];
 

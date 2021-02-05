@@ -1,13 +1,40 @@
+<mat-form-field>
+    <input matInput placeholder="Search Audit" #input>
+</mat-form-field>
+
+<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+</div>
+
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource" #MatSort matSort matSortActive="id" matSortDirection="asc" matSortDisableClear> 
+  
 <h1>Hi {{currentUser.firstName}}!</h1>
 <p>You're logged in with Angular 8!!</p>
 <h3>All login audit :</h3>
-<ul>
+<select class = "form-control" (click)="changeFormat($event)">
+    <option value="dd/MM/yyyy hh:mm:ss">12 Hour</option>
+    <option value="dd/MM/yyyy HH:mm:ss">24 Hour</option>
+</select>
+<!--<ul>
     <li *ngFor="let audit of audits">
-        <br/><span class="badge badge-primary">{{audit.user}}</span>
-        <br/><span class="badge badge-secondary">{{audit._id}}</span>
-        <br/>Login - {{audit.loginTime}}
-        <br/>Logout - {{audit.logoutTime}}
-        <br/>IP - {{audit.ip}}
-    </li>
+        <br/>-->
+       <ng-container matColumnDef="user">
+            <mat-header-cell *matHeaderCellDef>Audit User</mat-header-cell>
+        <mat-cell class="badge badge-primary" *matCellDef="let audit">{{audit.user}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Audit Id</mat-header-cell>
+        <mat-cell class="badge badge-secondary" *matCellDef="let audit">{{audit._id}}</mat-cell></ng-container>
+        <!--<br/>Login - {{audit.loginTime | date:datePipe}}
+        <br/>Logout - {{audit.logoutTime | date:datePipe}}
+        <br/>IP - {{audit.ip}}-->
+ <!-- </li>
 
-</ul>
+</ul>-->
+<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table> 
+<mat-paginator #MatPaginator [length]="dataSource.audits.length" [pageSize]="3"
+                   [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
