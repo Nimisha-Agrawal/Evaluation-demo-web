@@ -10,7 +10,7 @@ export class AuditService
 {
     constructor(private http: HttpClient) { }
     
-    getAll(
+    /*getAll(
         filter = '', sortOrder = 'asc',
         pageNumber = 0, pageSize = 3):  Observable<Audit[]> {
 
@@ -23,11 +23,11 @@ export class AuditService
         }).pipe(
             map(res =>  res["payload"])
         );
-    }
-
-    /*getAll(){
-        return this.http.get<Audit[]>(`${ config.apiUrl }/audits`);
     }*/
+
+    getAll(){
+        return this.http.get<Audit[]>(`${ config.apiUrl }/audits`);
+    }
 
     create(Audit: Audit)
     {
