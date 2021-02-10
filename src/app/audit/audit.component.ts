@@ -114,14 +114,7 @@ import { AuditService, AuthenticationService } from '@/_services';
           } 
           .search{
               text-align: center;
-          }
-         /* .outer{
-            border: 1px solid red;
-            width:100%;
-            display: flex;
-            justify-content: center;
-          }*/`
-
+          }`
     ],
 })
 export class AuditComponent implements OnInit, AfterViewInit {
