@@ -1,7 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { appRoutingModule } from './app.routing';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -35,6 +36,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatFormFieldModule,
         MatProgressSpinnerModule,
         FlexLayoutModule,
+        MatIconModule,
         appRoutingModule
     ],
     declarations: [
@@ -44,6 +46,17 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         RegisterComponent,
         AuditComponent,
         AlertComponent
+    ],
+    exports: [
+        MatTableModule,
+        MatInputModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatFormFieldModule,
+        MatProgressSpinnerModule,
+        FlexLayoutModule,
+        MatIconModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

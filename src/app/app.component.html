@@ -4,7 +4,7 @@
         <a class="nav-item nav-link" routerLink="/">Home</a>
         <a class="nav-item nav-link" routerLink="/audit" *ngIf="currentUser.role == 'Auditor'">Audit</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
-       
+
     </div>
 </nav>
 
@@ -12,7 +12,7 @@
 <div class="jumbotron">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 offset-sm-3">
+            <div class="col-sm-12 offset-sm-12">
                 <alert></alert>
                 <router-outlet></router-outlet>
             </div>

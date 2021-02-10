@@ -1,53 +1,55 @@
+<div fxLayout fxLayoutAlign="center center" class="search">
+    <mat-form-field fxFlex="40%">
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" autoComplete="off">
+    </mat-form-field>
+</div>
 
-    <div fxLayout fxLayoutAlign="center center">
-        <mat-form-field fxFlex="40%">
-          <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="______">
-        </mat-form-field>
-      </div>
-
-<select style="margin-bottom: 10px" (click)="changeFormat($event)">
-    <option value="dd/MM/yyyy hh:mm:ss">12 Hour</option>
-    <option value="dd/MM/yyyy HH:mm:ss">24 Hour</option>
-</select>
-
+<div class="box">
+    <select style="margin-bottom: 10px" (click)="changeFormat($event)">
+        <option value="dd/MM/yyyy hh:mm:ss">12 Hour</option>
+        <option value="dd/MM/yyyy HH:mm:ss">24 Hour</option>
+    </select>
+</div>
 <!--<h1>Hi {{currentUser.firstName}}!</h1>
 <p>You're logged in with Angular 8!!</p>
 <h3>All login audit :</h3>
 -->
-<table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear> 
-<!--<ul>
+<div class="outer">
+    <mat-table [dataSource]="dataSource" matSort>
+        <!--<ul>
     <li *ngFor="let audit of audits">
         <br/>-->
-       <ng-container matColumnDef="user">
-            <th mat-header-cell *matHeaderCellDef>Audit User</th>
-        <td mat-cell class="badge badge-primary" *matCellDef="let audit">{{audit.user}}</td>
+        <ng-container matColumnDef="user">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Audit User</th>
+            <mat-cell *matCellDef="let audit">{{audit.user}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Audit Id</th>
-        <td mat-cell class="badge badge-secondary" *matCellDef="let audit">{{audit.id}}</td></ng-container>
+            <mat-cell *matCellDef="let audit">{{audit.id}}</mat-cell>
+        </ng-container>
         <ng-container matColumnDef="loginTime">
-        <th mat-header-cell *matHeaderCellDef>Audit Login Time</th>
-        <td mat-cell class="badge badge-primary" *matCellDef="let audit">
-            Login - {{audit.loginTime | date:datePipe}}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Audit Login Time</th>
+            <mat-cell *matCellDef="let audit">
+                Login - {{audit.loginTime | date:datePipe}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="logoutTime">
-        <th mat-header-cell *matHeaderCellDef>Audit Logout Time</th>
-        <td mat-cell class="badge badge-primary" *matCellDef="let audit">
-            Logout - {{audit.logoutTime | date:datePipe}}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Audit Logout Time</th>
+            <mat-cell *matCellDef="let audit">
+                Logout - {{audit.logoutTime | date:datePipe}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="ip">
-            <th mat-header-cell *matHeaderCellDef>Audit IP</th>
-            <td mat-cell class="badge badge-primary" *matCellDef="let audit">
-        IP - {{audit.ip}}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Audit IP</th>
+            <mat-cell *matCellDef="let audit">
+                IP - {{audit.ip}}</mat-cell>
         </ng-container>
- <!-- </li>
+        <!--<ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="5">Loading Data...</mat-footer-cell> 
+    </ng-container>-->
 
-</ul>-->
-<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <!--<mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>-->
+    </mat-table>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 
-    <td mat-row *matRowDef="let row; columns: displayedColumns"></td>
-
-</table> 
-<!--<mat-paginator  [pageSize]="3"
-                   [pageSizeOptions]="[3, 5, 10]"></mat-paginator>-->
-
+</div>
